@@ -1,0 +1,7 @@
+{
+  "name": "Tic-Tak-Toe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
