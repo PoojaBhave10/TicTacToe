@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { IonButton, IonCol, IonContent, IonGrid, IonRow, IonText } from "@ionic/react";
+import {
+  IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonText,
+} from "@ionic/react";
 import Square from "./Square";
 import "./Board.css";
 
@@ -12,10 +19,10 @@ export default function board() {
   let buttonColor;
   if (winner) {
     status = winner + " Wins!";
-    buttonColor = "success"
+    buttonColor = "success";
   } else {
     status = "Next player: " + (IsXNext ? "X" : "O");
-    buttonColor = "warning"
+    buttonColor = "warning";
   }
 
   function calculateWinner(squares: any) {
@@ -57,37 +64,44 @@ export default function board() {
   };
   return (
     <IonContent class="backgroundImage">
-      <div >
+      <div>
         <div className="labelStyle">
-          <IonText>
-            Tic Tac Toe
-          </IonText>
+          <IonText>Tic Tac Toe</IonText>
         </div>
-          
-          <IonGrid>
-            <IonRow>
-              <IonCol size="3"></IonCol>
-              <IonCol style={{marginTop:"2vh"}}>
-              {squares.map((item,i) => (
-               <>
-                <IonCol key={i} >
-                  <Square
-                    value={squares[i]}
-                    onSquareclick={(e: any) => handleClick(i)}
-                  />
-                </IonCol>
-                </>
-              ))}
+
+        <IonGrid
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "3vh",
+          }}
+        >
+          <IonRow style={{ width: "170px" }}>
+            {squares.map((item, i) => (
+              <IonCol
+                key={i}
+                size="4"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Square
+                  value={squares[i]}
+                  onSquareclick={(e: any) => handleClick(i)}
+                />
               </IonCol>
-              <IonCol size="3"></IonCol>
-              
-            </IonRow>
-          </IonGrid>
+            ))}
+          </IonRow>
+        </IonGrid>
 
-         
-
-          <div className="board-row"></div>
-             <div style={{textAlign:'center', marginTop: '2vh'}}><IonButton mode="ios" color={buttonColor}><b>{status}</b></IonButton></div>   
+        <div className="board-row"></div>
+        <div style={{ textAlign: "center", marginTop: "2vh" }}>
+          <IonButton mode="ios" color={buttonColor}>
+            <b>{status}</b>
+          </IonButton>
+        </div>
       </div>
     </IonContent>
   );
